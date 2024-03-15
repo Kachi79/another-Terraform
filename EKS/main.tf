@@ -13,15 +13,15 @@ module "vpc" {
   single_nat_gateway   = true
 
   tags = {
-    "kubernetes.io/cluster/my-eks-cluster" = "shared"
+    "kubernetes.io/cluster/kachi-eks-cluster" = "shared"
   }
 
   public_subnet_tags = {
-    "kubernetes.io/cluster/my-eks-cluster" = "shared"
+    "kubernetes.io/cluster/kachi-eks-cluster" = "shared"
     "kubernetes.io/role/elb"               = 1
   }
   private_subnet_tags = {
-    "kubernetes.io/cluster/my-eks-cluster" = "shared"
+    "kubernetes.io/cluster/kachi-eks-cluster" = "shared"
     "kubernetes.io/role/elb"               = 1
   }
 }
@@ -31,7 +31,7 @@ module "vpc" {
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   version         = "~> 20.0"
-  cluster_name    = "my-eks-cluster"
+  cluster_name    = "kachi-eks-cluster"
   cluster_version = "1.29"
 
   cluster_endpoint_public_access = true
@@ -49,7 +49,7 @@ module "eks" {
   tags = {
     Envronment = "dev"
     Terraform  = "true"
-    Name       = "my-eks-module"
+    Name       = "kachi-eks-cluster"
   }
 
 
